@@ -5,16 +5,17 @@ const express = require("express");
 const ParseServer = require('parse-server').ParseServer;
 const path = require('path');
 
-const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/parse';   // Mongodb
+// const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/parse';   // Mongodb
+const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://admin:123456@ds213229.mlab.com:13229/parse';   // Mongodb
 
 const appId = process.env.APP_ID || 'bec';
 const appName = process.env.APP_NAME || 'Becheer';      // 本应用名称
 const masterKey = process.env.MASTER_KEY || 'bec';      // 主密匙. 保密!
 const serverURL = process.env.SERVER_URL || 'http://localhost:1337/parse';   // Don't forget to change to https if needed
 const cloud = process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/index.js';
-const verifyUserEmails = true;                           // 是否开启邮件验证
-const publicServerURL = "http://localhost:1337/parse";   // 验证邮件链接URL
-const emailAdapter = {                                   // 邮件验证适配器
+const verifyUserEmails = true;                            // 是否开启邮件验证
+const publicServerURL = serverURL;                        // 验证邮件链接URL
+const emailAdapter = {                                    // 邮件验证适配器
   module: "@parse/simple-mailgun-adapter",        // https://www.mailgun.com，UID:hequnmin@gmail.com
   options: {
     fromAddress: "no-reply@becheer.com",
@@ -30,6 +31,7 @@ const push = JSON.parse(process.env.PARSE_SERVER_PUSH || "{}");
 // if (!databaseUri) {
 //   console.log('DATABASE_URI not specified, falling back to localhost.');
 // }
+console.log('DATABASE_URI :' + databaseUri );
 
 const api = new ParseServer({
   databaseURI: databaseUri,
