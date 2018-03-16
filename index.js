@@ -5,14 +5,12 @@ const express = require("express");
 const ParseServer = require('parse-server').ParseServer;
 const path = require('path');
 
-// const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/parse';   // Mongodb
-const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://admin:123456@ds213229.mlab.com:13229/parse';   // Mongodb
+const databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/parse';   // Mongodb
 
 const appId = process.env.APP_ID || 'bec';
 const appName = process.env.APP_NAME || 'Becheer';      // 本应用名称
 const masterKey = process.env.MASTER_KEY || 'bec';      // 主密匙. 保密!
-// const serverURL = process.env.SERVER_URL || 'http://localhost:1337/parse';   // Don't forget to change to https if needed
-const serverURL = process.env.SERVER_URL || 'https://parse-server-instances.herokuapp.com/parse';   // Don't forget to change to https if needed
+const serverURL = process.env.SERVER_URL || 'http://localhost:1337/parse';   // Don't forget to change to https if needed
 const cloud = process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/index.js';
 const verifyUserEmails = true;                            // 是否开启邮件验证
 const publicServerURL = serverURL;                        // 验证邮件链接URL
