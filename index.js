@@ -54,6 +54,12 @@ const app = express();
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
+// Get Client IP
+app.use(function(req, res, next) {
+  req.headers['X-Parse-Real-Ip'] = req.ip;
+  next();
+});
+
 // Serve the Parse API on the /parse URL prefix
 const mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
