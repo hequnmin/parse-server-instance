@@ -61,7 +61,7 @@ app.use(function(req, res, next) {
   // console.log("ips = " + JSON.stringify(req.ips));// 相当于(req.header('x-forwarded-for') || '').split(',')
   // console.log("remoteAddress = " + req.connection.remoteAddress);// 未发生代理时，请求的ip
   // console.log("ip = " + req.ip);// 同req.connection.remoteAddress, 但是格式要好一些
-  req.headers['X-Parse-Real-Ip'] = req.connection.remoteAddress;
+  req.headers['X-Parse-Real-Ip'] = req.header('x-forwarded-for');
   next();
 });
 
