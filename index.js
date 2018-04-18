@@ -22,6 +22,13 @@ const emailAdapter = {                                    // 邮件验证适配�
     apiKey: "key-235b37dd69d4eac162215380aac51a22"
   }
 };
+
+const FSFilesAdapter = require('@parse/fs-files-adapter');
+// const fsAdapter = new FSFilesAdapter({
+//   "filesSubDirectory": "my/files/folder" // optional
+// });
+const fsAdapter = new FSFilesAdapter();
+
 const liveQuery = {
   classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
 };
@@ -43,7 +50,8 @@ const api = new ParseServer({
   publicServerURL: publicServerURL,
   emailAdapter: emailAdapter,
   liveQuery: liveQuery,
-  push: push
+  push: push,
+  filesAdapter: fsAdapter
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
