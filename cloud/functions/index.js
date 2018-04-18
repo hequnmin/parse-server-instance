@@ -1,1 +1,2 @@
 require('./helloword');
+require('./common');
